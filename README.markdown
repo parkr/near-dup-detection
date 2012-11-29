@@ -6,7 +6,7 @@ of INFO 4300, Information Retrieval, Fall 2012.
 
 ### Usage
 
-  python ndd.py
+    python ndd.py
 
 ### License
 
