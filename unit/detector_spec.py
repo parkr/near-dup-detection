@@ -2,7 +2,8 @@
 
 import unittest
 import sys
-sys.path.insert(0, './../')
+from os.path import dirname, abspath
+sys.path.insert(0, dirname(dirname(abspath(__file__))))
 from detector import Detector
 
 class TestSequenceFunctions(unittest.TestCase):
