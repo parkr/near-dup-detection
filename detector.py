@@ -1,4 +1,4 @@
-import os, math, random
+import os, math, random, sys
 from ngram import Ngram
 
 class Detector:
@@ -15,6 +15,7 @@ class Detector:
         print "Creating 3-grams for each document..."
         self.create_3grams()
         print "3-gram generation is complete."
+        self.sketches = {} # maps filename to sketch
         print "Calculating sketches for each document..."
         self.calculate_sketches()
         print "Sketch calculation is complete."
@@ -26,27 +27,30 @@ class Detector:
     def calculate_sketches(self):
         p = self.p
         filenames = self.docs_to_ngrams.keys()
+        completed = []
         for j in filenames:
+            with open('./ngrams/'+os.path.basename(j), 'w') as f:
+                f.write(self.docs_to_ngrams[j].__str__())
+            if j in completed:
+                raise Exception
             sketch = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             for s in xrange(25):
                 f_min = sys.float_info.max
                 a_s = self.pairs_of_randoms[s][0]
                 b_s = self.pairs_of_randoms[s][1]
                 for obj in self.docs_to_ngrams[j]:
-                    fsx = (a_s*float(obj.indx) + b_s) % p
+                    fsx = (a_s*float(obj.ID) + b_s) % p
                     if fsx < f_min:
                         f_min = fsx
                 sketch[s] = f_min
             self.sketches[j] = sketch
+            completed.append(j)
     
     def generate_random_pairs_of_numbers(self):
         for i in xrange(25):
             a = random.randint(1, self.p-1)
             b = random.randint(0, self.p-1)
             self.pairs_of_randoms.append((a,b))
-    
-    def f(self, s, x):
-        return (self.pairs_of_randoms[s][0]*x + self.pairs_of_randoms[s][1]) % p
     
     def filename(self, filename):
         return "%s/%s" % (self.test_docs_dir, filename)
@@ -75,16 +79,26 @@ class Detector:
                 self.ngrams.append(ngram_value)
             ngrams.append(ngram)
         return ngrams
+    
+    def jaccard(self, k):
+        return (k/25.0)
         
-    def jaccard(self, set1, set2):
-        set1 = set(set1)
-        set2 = set(set2)
-        union = set1.union(set2)
-        intersection = set1.intersection(set2)
-        return math.fabs(len(intersection))/math.fabs(len(union))
-        
-    def is_duplicate(self, set1, set2):
-        return self.jaccard(set1, set2) >= 0.9
+    def get_jaccard(self, file1, file2):
+        # get num of same sketch values
+        k = 0.0
+        for index in xrange(25):
+            #print "%f == %f? @ index %d" % (self.sketches[file1][index], self.sketches[file2][index], index)
+            if self.sketches[file1][index] == self.sketches[file2][index]:
+                k += 1
+        return self.jaccard(k)
     
     def check_for_duplicates(self):
-        return self.is_duplicate(self.docs_to_ngrams[self.filename('file00.txt')], self.docs_to_ngrams[self.filename('file01.txt')])
+        matches = []
+        for indx1, f1 in enumerate(self.files):
+            file1 = self.filename(f1)
+            for indx2, f2 in enumerate(self.files[indx1+1:]):
+                file2 = self.filename(f2)
+                jaccard = self.get_jaccard(file1, file2)
+                if jaccard >= 0.5:
+                    matches.append("%s and %s are near-duplicates, with Jaccard value=%f." % (file1, file2, jaccard))
+        return "\n".join(matches)
