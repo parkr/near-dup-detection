@@ -24,7 +24,20 @@ class Detector:
         self.docs_to_ngrams = None
     
     def calculate_sketches(self):
-        pass
+        p = self.p
+        filenames = self.docs_to_ngrams.keys()
+        for j in filenames:
+            sketch = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            for s in xrange(25):
+                f_min = sys.float_info.max
+                a_s = self.pairs_of_randoms[s][0]
+                b_s = self.pairs_of_randoms[s][1]
+                for obj in self.docs_to_ngrams[j]:
+                    fsx = (a_s*float(obj.indx) + b_s) % p
+                    if fsx < f_min:
+                        f_min = fsx
+                sketch[s] = f_min
+            self.sketches[j] = sketch
     
     def generate_random_pairs_of_numbers(self):
         for i in xrange(25):
