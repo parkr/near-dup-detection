@@ -10,6 +10,7 @@ class Detector:
         self.ngrams_to_objs = {} # all ngrams
         self.docs_to_ngrams = {} # maps filenames to Ngram objects
         self.p = 24107
+        self.p = 24107.0
         self.pairs_of_randoms = []
         self.generate_random_pairs_of_numbers()
         print "Creating 3-grams for each document..."
