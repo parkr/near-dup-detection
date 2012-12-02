@@ -12,8 +12,12 @@ class Detector:
         self.p = 24107
         self.pairs_of_randoms = []
         self.generate_random_pairs_of_numbers()
+        print "Creating 3-grams for each document..."
         self.create_3grams()
+        print "3-gram generation is complete."
+        print "Calculating sketches for each document..."
         self.calculate_sketches()
+        print "Sketch calculation is complete."
     
     def calculate_sketches(self):
         pass
