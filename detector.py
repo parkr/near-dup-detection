@@ -18,6 +18,10 @@ class Detector:
         print "Calculating sketches for each document..."
         self.calculate_sketches()
         print "Sketch calculation is complete."
+        # cleanup
+        self.ngrams = None
+        self.ngrams_to_objs = None
+        self.docs_to_ngrams = None
     
     def calculate_sketches(self):
         pass
