@@ -9,7 +9,7 @@ class Detector:
         self.ngrams = [] # all ngrams
         self.ngrams_to_objs = {} # all ngrams
         self.docs_to_ngrams = {} # maps filenames to Ngram objects
-        self.p = 23912
+        self.p = 24107
         self.pairs_of_randoms = []
         self.generate_random_pairs_of_numbers()
         self.create_3grams()
