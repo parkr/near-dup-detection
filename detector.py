@@ -97,6 +97,6 @@ class Detector:
             for indx2, f2 in enumerate(self.files[indx1+1:]):
                 file2 = self.filename(f2)
                 jaccard = self.get_jaccard(file1, file2)
-                if jaccard >= 0.5:
+                if jaccard > 0.5:
                     matches.append("%s and %s are near-duplicates, with Jaccard value of %0.3f." % (f1, f2, jaccard))
         return "\n".join(matches)
