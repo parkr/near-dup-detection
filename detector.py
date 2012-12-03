@@ -29,8 +29,6 @@ class Detector:
         filenames = self.docs_to_ngrams.keys()
         completed = []
         for j in filenames:
-            with open('./ngrams/'+os.path.basename(j), 'w') as f:
-                f.write(self.docs_to_ngrams[j].__str__())
             if j in completed:
                 raise Exception
             sketch = [0] * 25
