@@ -9,7 +9,7 @@ class Detector:
         self.ngrams = [] # all ngrams
         self.ngrams_to_objs = {} # all ngrams
         self.docs_to_ngrams = {} # maps filenames to Ngram objects
-        self.p = 24107.0
+        self.p = 24107.0 # a prime larger than the number of 3-grams we'll have
         self.n = 25 # the number of samples for the sketches
         self.pairs_of_randoms = []
         self.generate_random_pairs_of_numbers()
@@ -25,6 +25,10 @@ class Detector:
         self.ngrams_to_objs = None
         self.docs_to_ngrams = None
     
+    # Public: calculates the sketches for each document based on the random
+    #         numbers which were generated beforehand
+    #
+    # Returns nothing
     def calculate_sketches(self):
         p = self.p
         filenames = self.docs_to_ngrams.keys()
@@ -45,15 +49,27 @@ class Detector:
             self.sketches[j] = sketch
             completed.append(j)
     
+    # Public: generates 25 random pairs of numbers
+    #
+    # Returns nothing
     def generate_random_pairs_of_numbers(self):
         for i in xrange(25):
             a = random.randint(1, self.p-1)
             b = random.randint(0, self.p-1)
             self.pairs_of_randoms.append((a,b))
     
+    # Public: returns the full relative path from the base dir of the project
+    #         to the filename input
+    #
+    # filename - the filename relative to the test directory
+    #
+    # Returns full filename (including test directory)
     def filename(self, filename):
         return "%s/%s" % (self.test_docs_dir, filename)
     
+    # Public: creates 3-grams for each document
+    #
+    # Returns nothing
     def create_3grams(self):
         for file in self.files:
             filename = self.filename(file)
@@ -61,6 +77,13 @@ class Detector:
                 ngrams_for_file = self.ngram(f.read().strip().strip(",.!|&-_()[]<>{}/\"'").strip(), 3, filename)
                 self.docs_to_ngrams[filename] = ngrams_for_file
     
+    # Public: creates n-grams
+    #
+    # file_contents - the string to be n-grammed
+    # length - value of 'n' in 'n-grams'; default=3
+    # filename - filename corresponding to the input file contents
+    #
+    # Returns the n-grams for the file contents
     def ngram(self, file_contents, length=3, filename=None):
         tokens = file_contents.split(" ")
         num_tokens = len(tokens)
@@ -79,18 +102,33 @@ class Detector:
             ngrams.append(ngram)
         return ngrams
     
-        
+    # Public: Estimates the jaccard coefficient
+    #
+    # m - the number of sketches (in the same index) of the same value
+    #
+    # Returns the estimated jaccard coefficient
     def jaccard(self, m):
         return (m/float(self.n))
+    
+    # Public: calculates the estimated jaccard coeffcient between the files
+    #
+    # file1 - the full relative filename of the first file
+    # file2 - the full relative filename of the second file
+    #
+    # Returns the estimated jaccard coefficient of the two files
     def get_jaccard(self, file1, file2):
         # get num of same sketch values
         k = 0.0
-            #print "%f == %f? @ index %d" % (self.sketches[file1][index], self.sketches[file2][index], index)
         for index in xrange(self.n):
             if self.sketches[file1][index] == self.sketches[file2][index]:
                 k += 1
         return self.jaccard(k)
     
+    # Public: checks for near-duplicates in the set of files based on jaccard
+    #         coefficient threshold of 0.5
+    #
+    # Returns a string containing formatted names and coefficients of 
+    #   documents whose jaccard coefficient is greater than 0.5
     def check_for_duplicates(self):
         matches = []
         for indx1, f1 in enumerate(self.files):
