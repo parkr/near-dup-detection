@@ -100,5 +100,5 @@ class Detector:
                 file2 = self.filename(f2)
                 jaccard = self.get_jaccard(file1, file2)
                 if jaccard >= 0.5:
-                    matches.append("%s and %s are near-duplicates, with Jaccard value=%f." % (file1, file2, jaccard))
+                    matches.append("%s and %s are near-duplicates, with Jaccard value of %0.3f." % (f1, f2, jaccard))
         return "\n".join(matches)
