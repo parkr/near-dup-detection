@@ -14,9 +14,10 @@ if __name__ == "__main__":
     
     print "Printing three nearest neighbors of the first 10 files..."
     filenames_of_first_ten = [detector.filename("file%02d.txt") % (f,) for f in xrange(10)]
+    filenames_of_first_one_hundred = [detector.filename("file%02d.txt") % (f,) for f in xrange(100)]
     for index1, j in enumerate(filenames_of_first_ten):
-        jaccard_coefficients = [0,0,0,0,0,0,0,0,0,0]
-        for index2, d in enumerate(filenames_of_first_ten):
+        jaccard_coefficients = [0] * 100
+        for index2, d in enumerate(filenames_of_first_one_hundred):
             if index1 != index2:
                 jaccard_coefficients[index2] = detector.get_jaccard(j, d)
         three_nearest = []
