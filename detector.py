@@ -33,7 +33,7 @@ class Detector:
                 f.write(self.docs_to_ngrams[j].__str__())
             if j in completed:
                 raise Exception
-            sketch = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            sketch = [0] * 25
             for s in xrange(25):
                 f_min = sys.float_info.max
                 a_s = self.pairs_of_randoms[s][0]
