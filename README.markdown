@@ -4,6 +4,8 @@ This program identifies near-duplicates in a corpus using techniques described
 by Professor William Arms of Cornell University in his lectures to the students
 of INFO 4300, Information Retrieval, Fall 2012.
 
+This program was written by Parker Moore (pjm336), Fall 2012.
+
 ### Usage
 
     python ndd.py

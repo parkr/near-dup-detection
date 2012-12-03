@@ -1,3 +1,8 @@
+# Detector class
+#
+# Written by Parker Moore (pjm336)
+# http://www.parkermoore.de
+
 import os, math, random, sys
 from ngram import Ngram
 

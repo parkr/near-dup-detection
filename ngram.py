@@ -1,3 +1,8 @@
+# Ngram class
+#
+# Written by Parker Moore (pjm336)
+# http://www.parkermoore.de
+
 class Ngram:
     
     def __init__(self, index, value, containing_file):

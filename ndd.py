@@ -1,4 +1,8 @@
 #! /usr/bin/env python
+# Main near-duplicate detection "runner"
+#
+# Written by Parker Moore (pjm336)
+# http://www.parkermoore.de
 
 import operator, copy
 from detector import Detector
