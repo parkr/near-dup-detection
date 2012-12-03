@@ -4,54 +4,54 @@ Calculating sketches for each document...
 Sketch calculation is complete.
 Checking for duplicates using NDD...
 Duplicates found (Jaccard coefficient > 0.5):
-file01.txt and file75.txt are near-duplicates, with Jaccard value of 0.880.
+file01.txt and file75.txt are near-duplicates, with Jaccard value of 0.960.
 file02.txt and file76.txt are near-duplicates, with Jaccard value of 0.960.
 file03.txt and file87.txt are near-duplicates, with Jaccard value of 1.000.
-file09.txt and file64.txt are near-duplicates, with Jaccard value of 0.840.
+file09.txt and file64.txt are near-duplicates, with Jaccard value of 0.880.
 file14.txt and file88.txt are near-duplicates, with Jaccard value of 0.960.
-file18.txt and file99.txt are near-duplicates, with Jaccard value of 0.880.
-file23.txt and file51.txt are near-duplicates, with Jaccard value of 1.000.
-file25.txt and file40.txt are near-duplicates, with Jaccard value of 0.960.
+file18.txt and file99.txt are near-duplicates, with Jaccard value of 0.840.
+file23.txt and file51.txt are near-duplicates, with Jaccard value of 0.960.
+file25.txt and file40.txt are near-duplicates, with Jaccard value of 1.000.
 file32.txt and file52.txt are near-duplicates, with Jaccard value of 1.000.
-file34.txt and file63.txt are near-duplicates, with Jaccard value of 1.000.
+file34.txt and file63.txt are near-duplicates, with Jaccard value of 0.960.
 Printing three nearest neighbors of the first 10 files...
 Three nearest neighbors to file00.txt:
-	file05.txt with Jaccard coefficient of 0.040
-	file08.txt with Jaccard coefficient of 0.040
-	file00.txt with Jaccard coefficient of 0.000
+	file65.txt with Jaccard coefficient of 0.280
+	file66.txt with Jaccard coefficient of 0.240
+	file44.txt with Jaccard coefficient of 0.160
 Three nearest neighbors to file01.txt:
-	file07.txt with Jaccard coefficient of 0.040
-	file00.txt with Jaccard coefficient of 0.000
-	file01.txt with Jaccard coefficient of 0.000
+	file75.txt with Jaccard coefficient of 0.960
+	file74.txt with Jaccard coefficient of 0.280
+	file68.txt with Jaccard coefficient of 0.200
 Three nearest neighbors to file02.txt:
-	file05.txt with Jaccard coefficient of 0.120
-	file04.txt with Jaccard coefficient of 0.040
-	file09.txt with Jaccard coefficient of 0.040
+	file76.txt with Jaccard coefficient of 0.960
+	file81.txt with Jaccard coefficient of 0.160
+	file85.txt with Jaccard coefficient of 0.160
 Three nearest neighbors to file03.txt:
-	file07.txt with Jaccard coefficient of 0.040
-	file00.txt with Jaccard coefficient of 0.000
-	file01.txt with Jaccard coefficient of 0.000
+	file87.txt with Jaccard coefficient of 1.000
+	file80.txt with Jaccard coefficient of 0.120
+	file84.txt with Jaccard coefficient of 0.120
 Three nearest neighbors to file04.txt:
-	file09.txt with Jaccard coefficient of 0.080
-	file02.txt with Jaccard coefficient of 0.040
-	file00.txt with Jaccard coefficient of 0.000
+	file71.txt with Jaccard coefficient of 0.280
+	file68.txt with Jaccard coefficient of 0.200
+	file70.txt with Jaccard coefficient of 0.200
 Three nearest neighbors to file05.txt:
-	file02.txt with Jaccard coefficient of 0.120
-	file08.txt with Jaccard coefficient of 0.080
-	file00.txt with Jaccard coefficient of 0.040
+	file82.txt with Jaccard coefficient of 0.160
+	file56.txt with Jaccard coefficient of 0.080
+	file77.txt with Jaccard coefficient of 0.080
 Three nearest neighbors to file06.txt:
-	file05.txt with Jaccard coefficient of 0.040
-	file07.txt with Jaccard coefficient of 0.040
-	file00.txt with Jaccard coefficient of 0.000
+	file77.txt with Jaccard coefficient of 0.160
+	file79.txt with Jaccard coefficient of 0.160
+	file85.txt with Jaccard coefficient of 0.160
 Three nearest neighbors to file07.txt:
-	file01.txt with Jaccard coefficient of 0.040
-	file03.txt with Jaccard coefficient of 0.040
-	file06.txt with Jaccard coefficient of 0.040
+	file80.txt with Jaccard coefficient of 0.160
+	file81.txt with Jaccard coefficient of 0.160
+	file10.txt with Jaccard coefficient of 0.080
 Three nearest neighbors to file08.txt:
-	file05.txt with Jaccard coefficient of 0.080
-	file00.txt with Jaccard coefficient of 0.040
-	file01.txt with Jaccard coefficient of 0.000
+	file84.txt with Jaccard coefficient of 0.200
+	file80.txt with Jaccard coefficient of 0.120
+	file82.txt with Jaccard coefficient of 0.120
 Three nearest neighbors to file09.txt:
-	file04.txt with Jaccard coefficient of 0.080
-	file02.txt with Jaccard coefficient of 0.040
-	file04.txt with Jaccard coefficient of 0.040
+	file64.txt with Jaccard coefficient of 0.880
+	file69.txt with Jaccard coefficient of 0.200
+	file73.txt with Jaccard coefficient of 0.200
