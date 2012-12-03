@@ -11,4 +11,3 @@ of INFO 4300, Information Retrieval, Fall 2012.
 ### License
 
 Standard MIT license applies.
-
