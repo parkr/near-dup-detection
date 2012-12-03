@@ -10,6 +10,7 @@ class Detector:
         self.ngrams_to_objs = {} # all ngrams
         self.docs_to_ngrams = {} # maps filenames to Ngram objects
         self.p = 24107.0
+        self.n = 25 # the number of samples for the sketches
         self.pairs_of_randoms = []
         self.generate_random_pairs_of_numbers()
         print "Creating 3-grams for each document..."
@@ -31,8 +32,8 @@ class Detector:
         for j in filenames:
             if j in completed:
                 raise Exception
-            sketch = [0] * 25
-            for s in xrange(25):
+            sketch = [0] * self.n
+            for s in xrange(self.n):
                 f_min = sys.float_info.max
                 a_s = self.pairs_of_randoms[s][0]
                 b_s = self.pairs_of_randoms[s][1]
@@ -78,14 +79,14 @@ class Detector:
             ngrams.append(ngram)
         return ngrams
     
-    def jaccard(self, k):
-        return (k/25.0)
         
+    def jaccard(self, m):
+        return (m/float(self.n))
     def get_jaccard(self, file1, file2):
         # get num of same sketch values
         k = 0.0
-        for index in xrange(25):
             #print "%f == %f? @ index %d" % (self.sketches[file1][index], self.sketches[file2][index], index)
+        for index in xrange(self.n):
             if self.sketches[file1][index] == self.sketches[file2][index]:
                 k += 1
         return self.jaccard(k)
