@@ -23,7 +23,7 @@ if __name__ == "__main__":
         jaccard_coefficients = [0] * 100
         for index2, d in enumerate(filenames_of_first_one_hundred):
             if index1 != index2:
-                jaccard_coefficients[index2] = detector.get_jaccard(j, d)
+                jaccard_coefficients[index2] = detector.index.get_jaccard(j, d)
         three_nearest = []
         nearest_count = -1
         jcos = copy.deepcopy(jaccard_coefficients)
