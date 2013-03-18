@@ -1,0 +1,6 @@
+include README.markdown
+include AUTHORS.txt
+include MANIFEST.in
+include CHANGES.txt
+include LICENSE.txt
+

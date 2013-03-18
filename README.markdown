@@ -6,11 +6,17 @@ of INFO 4300, Information Retrieval, Fall 2012.
 
 This program was written by Parker Moore (pjm336), Fall 2012.
 
-### Usage
+## Install
+
+```
+pip install git://github.com/parkr/near-dup-detection.git#egg=NearDuplicatesDetection
+```
+
+## Usage
 
     python ndd.py
 
-### Explanation of Methodology
+## Explanation of Methodology
 
 All of the logic for the program is built into the Detector class 
 (`detector.py`). This class contains the methods and instance variables needed
@@ -47,6 +53,6 @@ As an addendum to the project, the three "nearest neighbors" to the first ten
 documents is calculated at the end using the same method (and the data from
 before).
 
-### License
+## License
 
 Standard MIT license applies.
