@@ -8,8 +8,6 @@ from ngram import Ngram
 
 class NearDuplicatesIndex:
     def __init__(self):
-        self.ngrams = [] # all ngrams
-        self.ngrams_to_objs = {} # all ngrams
         self.docs_to_ngrams = {} # maps filenames to Ngram objects
         self.p = 24107.0 # a prime larger than the number of 3-grams we'll have
         self.n = 25 # the number of samples for the sketches
@@ -22,10 +20,20 @@ class NearDuplicatesIndex:
     def append(self, doc, docname):
         if docname in self.sketches:
             raise Exception
-
         p = self.p
-        self.calculate_ngrams(doc, 3, docname)
-        self.calculate_sketch(docname)
+        ngrams = self.calculate_ngrams(doc, 3)
+        self.sketches[docname] = self.calculate_sketch(docname, ngrams)
+
+    # Append if comparison between doc's jaccard coefficient and every doc in the
+    # corpus is less than a specified value.
+    def appendif(self, doc, docname, c=1.0):
+        self.append(doc, docname)
+        for name in self.sketches:
+            if name != docname:
+                if self.get_jaccard(docname, name) > c:
+                    del self.sketches[docname]
+                    return False
+        return True
 
     # Public: creates n-grams for a specified document
     #
@@ -34,7 +42,7 @@ class NearDuplicatesIndex:
     # docname - document name
     #
     # Returns the n-grams for the document
-    def calculate_ngrams(self, doc, length=3, docname=None):
+    def calculate_ngrams(self, doc, length=3):
         num_terms = len(doc)
         ngrams = []
         for t in xrange(num_terms):
@@ -42,32 +50,27 @@ class NearDuplicatesIndex:
                 break # n-2 ngrams!
             ngram_tokens = doc[t:t+length]
             ngram_value = "-".join(ngram_tokens)
-            ngram = Ngram(len(self.ngrams)+1, ngram_value, docname)
-            if ngram_value in self.ngrams:
-                self.ngrams_to_objs[ngram_value].add_containing_file(docname)
-            else:
-                self.ngrams_to_objs[ngram_value] = ngram
-                self.ngrams.append(ngram_value)
+            ngram = Ngram(ngram_value)
             ngrams.append(ngram)
-        self.docs_to_ngrams[docname] = ngrams
+        return ngrams
 
     # Public: calculates the sketches for a document based on the random
     #         numbers which were generated beforehand
     #
     # Returns nothing
-    def calculate_sketch(self, docname):
+    def calculate_sketch(self, docname, doc_ngrams):
         p = self.p
         sketch = [0] * self.n
         for s in xrange(self.n):
             f_min = sys.float_info.max
             a_s = self.pairs_of_randoms[s][0]
             b_s = self.pairs_of_randoms[s][1]
-            for obj in self.docs_to_ngrams[docname]:
-                fsx = (a_s*float(obj.ID) + b_s) % p
+            for ngram in doc_ngrams:
+                fsx = (a_s*float(ngram.ID) + b_s) % p
                 if fsx < f_min:
                     f_min = fsx
             sketch[s] = f_min
-        self.sketches[docname] = sketch
+        return sketch
 
     # Public: generates 25 random pairs of numbers
     #

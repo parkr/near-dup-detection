@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='NearDuplicatesDetection',
-    version='0.1.0',
+    version='0.2.0',
     author='Parker Moore',
     author_email='parkrmoore@gmail.com',
     packages=['ndd', 'ndd.unit'],
