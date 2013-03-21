@@ -9,6 +9,5 @@ setup(
     url='https://github.com/parkr/near-dup-detection',
     license='LICENSE.txt',
     description='Identifies near-duplicates in a corpus',
-    long_description=open('README.markdown').read(),
-    install_requires=[],
+    long_description=open('README.markdown').read()
 )
