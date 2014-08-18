@@ -6,7 +6,7 @@ of INFO 4300, Information Retrieval, Fall 2012.
 
 This program was written by Parker Moore (pjm336), Fall 2012.
 
-[![Build Status](https://travis-ci.org/parkr/near-dup-detection.png?branch=master)](https://travis-ci.org/parkr/near-dup-detection?branch=master)
+[![Build Status](https://travis-ci.org/parkr/near-dup-detection.svg?branch=master)](https://travis-ci.org/parkr/near-dup-detection?branch=master)
 
 ## Install
 
@@ -57,4 +57,4 @@ before).
 
 ## License
 
-Standard MIT license applies.
+Standard GPLv2 license applies. Copyright (2012) Parker Moore.
