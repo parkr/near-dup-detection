@@ -6,6 +6,8 @@ of INFO 4300, Information Retrieval, Fall 2012.
 
 This program was written by Parker Moore (pjm336), Fall 2012.
 
+It is hosten on GitHub at https://github.com/parkr/near-dup-detection
+
 [![Build Status](https://travis-ci.org/parkr/near-dup-detection.svg?branch=master)](https://travis-ci.org/parkr/near-dup-detection?branch=master)
 
 ## Install
@@ -20,7 +22,7 @@ pip install git://github.com/parkr/near-dup-detection.git#egg=NearDuplicatesDete
 
 ## Explanation of Methodology
 
-All of the logic for the program is built into the Detector class 
+All of the logic for the program is built into the Detector class
 (`detector.py`). This class contains the methods and instance variables needed
 to detect near-duplicates, such as the `get_jaccard(file1, file2)` method, the
 `calculate_sketches()` method and the fundamental `create_3grams()` method.
