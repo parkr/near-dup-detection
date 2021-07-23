@@ -3,8 +3,8 @@
 # Written by Parker Moore (pjm336)
 # http://www.parkermoore.de
 
-class Ngram:
 
+class Ngram:
     def __init__(self, value):
         self.value = value
         self.ID = self.__hash__()
